@@ -1,0 +1,92 @@
+#配置端口
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 21600
+
+#配置mysql数据库
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://120.46.170.23:3306/thatblog?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+#    url: jdbc:mysql://47.101.220.232:3306/thatblog?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: Yu1208
+    hikari:
+      minimum-idle: 5
+      # 空闲连接存活最大时间，默认600000（10分钟）
+      idle-timeout: 180000
+      # 连接池最大连接数，默认是10
+      maximum-pool-size: 10
+      # 此属性控制从池返回的连接的默认自动提交行为,默认值：true
+      auto-commit: true
+      # 连接池名称
+      pool-name: MyHikariCP
+      # 此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟
+      max-lifetime: 1800000
+      # 数据库连接超时时间,默认30秒，即30000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  #redis配置
+  redis:
+    host: 120.46.170.23
+    port: 6379
+    password: Yu1208
+  #mq配置
+  rabbitmq:
+    port: 5672
+    host: 120.46.170.23
+    username: guest
+    password: guest
+  #邮箱配置
+  mail:
+    username: 1365797108@qq.com
+    password: zmvytitqkyjiiafd
+    host: smtp.qq.com
+    default-encoding: UTF-8
+    port: 587
+    properties:
+      mail:
+      smtp:
+      auth: true
+      socketFactory:
+      class: javax.net.ssl.SSLSocketFactory
+  #图片大小限制
+  servlet:
+    multipart:
+      max-file-size: 40MB
+      max-request-size: 100MB
+
+#es配置
+#elasticsearch:
+#  host: 47.101.220.232
+#  port: 9200
+
+#配置MybatisPlus
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+#第三方配置信息
+qq:
+  app-id: "QQ APPID"
+  user-info-url: "https://graph.qq.com/user/get_user_info?openid={openid}&access_token={access_token}&oauth_consumer_key={oauth_consumer_key}"
+
+weibo:
+  app-id: "2364007558"
+  app-secret: "54139acb9bae04f15981b60f31053def"
+  grant-type: "authorization_code"
+  redirect-url: "http://auth.com/oauth2.0/weibo/success"
+  access-token-url: "https://api.weibo.com/oauth2/access_token"
+  user-info-url: "https://api.weibo.com/2/users/show.json?uid={uid}&access_token={access_token}"
+
+aliyun:
+  url: "https://weridr.oss-cn-hangzhou.aliyuncs.com/"
+  endpoint: "http://oss-cn-hangzhou.aliyuncs.com"
+  accessKeyId: "LTAI5tJT9pyQFoubdHkHNFBM"
+  accessKeySecret: "74HLvlP4489qulhB5Jgc2SKDh2Cxmk"
+  bucketName: "weridr"
